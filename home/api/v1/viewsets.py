@@ -1,6 +1,11 @@
 from rest_framework import viewsets
 from rest_framework import authentication
-from .serializers import CustomTextSerializer, TestSerializer, HomePageSerializer
+from .serializers import (
+    CustomTextSerializer,
+    HomePageSerializer,
+    TesnhjhSerializer,
+    TestSerializer,
+)
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.permissions import IsAdminUser
@@ -14,7 +19,7 @@ from home.api.v1.serializers import (
     HomePageSerializer,
     UserSerializer,
 )
-from home.models import CustomText, Test, HomePage
+from home.models import CustomText, HomePage, Tesnhjh, Test
 
 
 class SignupViewSet(ModelViewSet):
@@ -61,3 +66,12 @@ class TestViewSet(viewsets.ModelViewSet):
         authentication.TokenAuthentication,
     )
     queryset = Test.objects.all()
+
+
+class TesnhjhViewSet(viewsets.ModelViewSet):
+    serializer_class = TesnhjhSerializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
+    queryset = Tesnhjh.objects.all()
